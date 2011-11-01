@@ -1,0 +1,2 @@
+export(EL.statistic, EL.plot, EL.smooth, EL.means, EL.Huber)
+useDynLib(EL, theta_equation)
