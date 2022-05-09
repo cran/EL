@@ -1,2 +1,4 @@
 export(EL.statistic, EL.plot, EL.smooth, EL.means, EL.Huber)
 useDynLib(EL, theta_equation)
+importFrom("stats", "bw.nrd0", "dnorm", "ecdf", "optimize", "pchisq",
+           "pnorm", "qchisq", "qnorm", "quantile", "uniroot")

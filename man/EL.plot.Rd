@@ -10,7 +10,7 @@ differences (ddiff) and their respective confidence bands (pointwise or simultan
 likelihood method.
 }
 \usage{
-EL.plot(method, X, Y, bw = bw.nrd0, conf.level = NULL, 
+EL.plot(method, X, Y, bw = bw.nrd0, conf.level = NULL,
         simultaneous = FALSE, bootstrap.samples = 300,
         more.warnings = FALSE, ...)
 }
@@ -30,16 +30,16 @@ a function taking a vector of values and returning the corresponding
 bandwidth or a vector of two values corresponding to the respective
 bandwidths of X and Y.
 }
-  \item{conf.level}{ 
-confidence level for the intervals. A number between 0 and 1 or NULL when 
-no confidence bands should be calculated. Depending on the value of 
-'simultaneous' either pointwise intervals or simultaneous confidence bands 
+  \item{conf.level}{
+confidence level for the intervals. A number between 0 and 1 or NULL when
+no confidence bands should be calculated. Depending on the value of
+'simultaneous' either pointwise intervals or simultaneous confidence bands
 will be drawn.
 }
   \item{simultaneous}{
-if this is TRUE, simultaneous confidence bands will be constructed, using 
+if this is TRUE, simultaneous confidence bands will be constructed, using
 a nonparametric bootstrap procedure to select the level of confidence
-bands. The default is FALSE, in which case simple pointwise confidence bands are 
+bands. The default is FALSE, in which case simple pointwise confidence bands are
 calculated.
 }
   \item{bootstrap.samples}{
@@ -61,8 +61,8 @@ further arguments passed to plot.
   quantile functions is [0, 1] (where these functions are defined). The
   Q-Q plot is drawn from the minimum to the maximum of 'Y'. Finally, for
   the plot of distribution function differences the interval from max(min(X),
-  min(Y)) to min(max(X), max(Y)) is used. 
-  
+  min(Y)) to min(max(X), max(Y)) is used.
+
   Confidence bands are drawn only if 'conf.level' is not 'NULL'.
 
 When constructing simultaneous confidence bands, the plot is drawn on an
@@ -83,7 +83,7 @@ none.
 J. Valeinis, E. Cers. Extending the two-sample empirical likelihood. To be published.
 Preprint available at http://home.lanet.lv/~valeinis/lv/petnieciba/EL_TwoSample_2011.pdf.
 
-P. Hall and A. Owen (1993). Empirical likelihood bands in density estimation. 
+P. Hall and A. Owen (1993). Empirical likelihood bands in density estimation.
 Journal of Computational and Graphical statistics, 2(3), 273-289.
 }
 \author{
@@ -94,7 +94,7 @@ E. Cers, J. Valeinis
 
 \seealso{
 %% ~~objects to See Also as \code{\link{help}}, ~~~
-\code{\link{EL.smooth}} 
+\code{\link{EL.smooth}}
 \code{\link{EL.statistic}}
 }
 \examples{
@@ -103,6 +103,7 @@ E. Cers, J. Valeinis
 X1 <- rchisq(100, 2.5)
 X2 <- rnorm(100, 0, 1)
 
+\donttest{
 p <- par(lwd=2, mfrow=c(3,2))
 
 # Intro
@@ -112,9 +113,9 @@ D2 <- density(X2)
 ylim <- c(min(D1$y, D2$y), max(D1$y, D2$y))
 plot(D1, xlim=xlim, ylim=ylim, main="Distribution functions", xlab="x")
 lines(D2, lty="dashed")
-legend("topright", c(eval(substitute(expression(paste("X1 (bw = ", a, ")")), 
+legend("topright", c(eval(substitute(expression(paste("X1 (bw = ", a, ")")),
                                      list(a = round(D1$bw, 2)))),
-                     eval(substitute(expression(paste("X2 (bw = ", a, ")")), 
+                     eval(substitute(expression(paste("X2 (bw = ", a, ")")),
                                      list(a = round(D2$bw, 2))))),
                    lty=c("solid", "dashed"))
 
@@ -150,7 +151,7 @@ ee <- 1- ecdf(X1)(quantile(X2, 1-tt))
 points(tt, ee)
 
 par(p)
-
+}
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
 % R documentation directory.
