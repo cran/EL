@@ -1,6 +1,7 @@
-be1fb3c8e97a4768d84d59e16cdf622f *DESCRIPTION
+64c067df49b9276a1f5708562cf0ab36 *DESCRIPTION
 18cd340be696ed3a398d4d87ccd3902f *NAMESPACE
 7657d1c77665389d957eb5b9f636cce7 *R/EL.R
+090d64ce214b348541b903d3505d9557 *R/hello.R
 06e0e9adcf5a5d95bc2b88f805119390 *man/EL.Huber.Rd
 1f458804463c021c1d71691b84b40cba *man/EL.means.Rd
 b9613f4580b3bb1645bf20fced42241f *man/EL.plot.Rd
@@ -8,5 +9,5 @@ b9613f4580b3bb1645bf20fced42241f *man/EL.plot.Rd
 c09893ae9ea4b14f23078320cee4b532 *man/EL.statistic.Rd
 85079d2c8e459c586e201f047b8b7bf7 *src/EL.c
 7c22b1b500cab25872924e218f1645f5 *src/registerDynamicSymbol.c
-40ec4917c794dee64dd883b7769016e4 *src/zeroin.c
+5f1ecff51b7ccc14df4487494d81525d *src/zeroin.c
 e44cfe4a3bb036653f5682fcc25bd65e *src/zeroin.h

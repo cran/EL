@@ -1,6 +1,6 @@
 Package: EL
-Version: 1.1
-Date: 2022-05-03
+Version: 1.2
+Date: 2022-12-18
 Title: Two-Sample Empirical Likelihood
 Authors@R: c(
     person("Janis", "Valeinis", role = "aut", email = "janis.valeinis@lu.lv", comment = c(ORCID = "0000-0003-0989-0444")),
@@ -14,5 +14,5 @@ Author: Janis Valeinis [aut] (<https://orcid.org/0000-0003-0989-0444>),
 Maintainer: Janis Gredzens <janis.gredzens@lu.lv>
 Repository: CRAN
 NeedsCompilation: yes
-Packaged: 2022-05-07 15:58:37 UTC; jgredzens
-Date/Publication: 2022-05-09 09:10:09 UTC
+Packaged: 2022-12-18 21:01:11 UTC; gredz
+Date/Publication: 2022-12-19 09:50:06 UTC
