@@ -104,11 +104,12 @@ X2 <- rnorm(200, 1)
 x <- seq(0.05, 0.95, length=19)
 y <- EL.smooth("pp", X1, X2, x, conf.level=0.95,
                simultaneous=TRUE, bw=c(0.3, 0.3))
+conf.int <- data.frame(x = x, ci.l = y$conf.int[1,], ci.u = y$conf.int[2,])
 
 ## Plot the graph with both pointwise and simultaneous confidence bands
-EL.plot("pp", X1, X2, conf.level=0.95, bw=c(0.3, 0.3))
-lines(x, y$conf.int[1,], lty="dotted")
-lines(x, y$conf.int[2,], lty="dotted")
+EL.plot("pp", X1, X2, conf.level=0.95, bw=c(0.3, 0.3)) +
+    ggplot2::geom_line(data= conf.int, ggplot2::aes(x=x, y=ci.u), lty="dotted") +
+    ggplot2::geom_line(data= conf.int, ggplot2::aes(x=x, y=ci.l), lty="dotted")
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the

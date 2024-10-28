@@ -104,53 +104,63 @@ X1 <- rchisq(100, 2.5)
 X2 <- rnorm(100, 0, 1)
 
 \donttest{
-p <- par(lwd=2, mfrow=c(3,2))
+X1 <- rchisq(100, 2.5)
+X2 <- rnorm(100, 0, 1)
 
 # Intro
 xlim <- c(min(X1, X2) - 0.5, max(X1, X2) + 0.5)
 D1 <- density(X1)
 D2 <- density(X2)
 ylim <- c(min(D1$y, D2$y), max(D1$y, D2$y))
-plot(D1, xlim=xlim, ylim=ylim, main="Distribution functions", xlab="x")
-lines(D2, lty="dashed")
-legend("topright", c(eval(substitute(expression(paste("X1 (bw = ", a, ")")),
-                                     list(a = round(D1$bw, 2)))),
-                     eval(substitute(expression(paste("X2 (bw = ", a, ")")),
-                                     list(a = round(D2$bw, 2))))),
-                   lty=c("solid", "dashed"))
+df <- data.frame(x1 = D1$x, y1 = D1$y, x2 = D2$x, y2 = D2$y)
+p1 <- ggplot2::ggplot(data = df) +
+    ggplot2::geom_line(ggplot2::aes(x=x2, y=y2, color=paste0('X2 (bw=', round(D2$bw, 2), ')'))) +
+    ggplot2::geom_line(ggplot2::aes(x=x1, y=y1, color=paste0('X1 (bw=', round(D1$bw, 2), ')'))) +
+    ggplot2::guides(color = ggplot2::guide_legend(title = NULL)) +
+    ggplot2::theme_minimal() +
+    ggplot2::theme(legend.position = "top") +
+    ggplot2::labs(x="X", y="Density")
+p1
 
 # CDF differences
-EL.plot("fdiff", X1, X2, main="F difference", conf.level=0.95)
+p2 <- EL.plot("fdiff", X1, X2, main="F difference", conf.level=0.95)
 tt <- seq(max(c(min(X1), min(X2))), min(c(max(X1), max(X2))), length=30)
 ee <- ecdf(X2)(tt) - ecdf(X1)(tt)
-points(tt, ee)
+p2 <- p2 + ggplot2::geom_point(data=data.frame(tt = tt, ee = ee), ggplot2::aes(x=tt, y=ee))
+p2
 
 # Quantile differences
-EL.plot("qdiff", X1, X2, main="Quantile difference", conf.level = 0.95)
+p3 <- EL.plot("qdiff", X1, X2, main="Quantile difference", conf.level = 0.95)
 tt <- seq(0.01, 0.99, length=30)
 ee <- quantile(X2, tt) - quantile(X1, tt)
-points(tt, ee)
+p3 <- p3 + ggplot2::geom_point(data=data.frame(tt = tt, ee = ee), ggplot2::aes(x=tt, y=ee))
+p3
 
 # Q-Q plot
-EL.plot("qq", X1, X2, main="Q-Q plot", conf.level=0.95)
+p4 <- EL.plot("qq", X1, X2, main="Q-Q plot", conf.level=0.95)
 tt <- seq(min(X2), max(X2), length=30)
 ee <- quantile(X1, ecdf(X2)(tt))
-points(tt, ee)
+p4 <- p4 + ggplot2::geom_point(data=data.frame(tt = tt, ee = ee), ggplot2::aes(x=tt, y=ee))
+p4
 
 # P-P plot
-EL.plot("pp", X1, X2, main="P-P plot", conf.level=0.95, ylim=c(0,1))
+p5 <- EL.plot("pp", X1, X2, main="P-P plot", conf.level=0.95, ylim=c(0,1))
 tt <- seq(0.01, 0.99, length=30)
 ee <- ecdf(X1)(quantile(X2, tt))
-points(tt, ee)
-
+p5 <- p5 + ggplot2::geom_point(data=data.frame(tt = tt, ee = ee), ggplot2::aes(x=tt, y=ee))
+p5
 
 # ROC curve
-EL.plot("roc", X1, X2, main="ROC curve", conf.level=0.95, ylim=c(0,1))
+p6 <- EL.plot("roc", X1, X2, main="ROC curve", conf.level=0.95, ylim=c(0,1))
 tt <- seq(0.01, 0.99, length=30)
 ee <- 1- ecdf(X1)(quantile(X2, 1-tt))
-points(tt, ee)
+p6 <- p6 + ggplot2::geom_point(data=data.frame(tt = tt, ee = ee), ggplot2::aes(x=tt, y=ee))
+p6
 
-par(p)
+# Showing all plots at once is outside of scope from
+# these examples but to do so run the following:
+# require(cowplot)
+# cowplot::plot_grid(p1, p2, p3, p4, p5, p6, ncol = 2)
 }
 }
 % Add one or more standard keywords, see file 'KEYWORDS' in the
