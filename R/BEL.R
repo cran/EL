@@ -13,6 +13,8 @@
 #' statistic - the value of the test statistic.
 #' p.value - the p-value for the test.
 #'
+#' @author R. Alksnis, J. Valeinis
+#'
 #' @examples
 #' # Basic example
 #' Delta0 <- 1.5

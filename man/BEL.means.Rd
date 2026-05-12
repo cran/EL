@@ -32,3 +32,6 @@ Y <- arima.sim(n = 400, model = list(ar = .5)) + Delta0
 BEL.means(X, Y, 10, 20, Delta = Delta0)
 
 }
+\author{
+R. Alksnis, J. Valeinis
+}

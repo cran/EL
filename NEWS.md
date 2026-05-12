@@ -1,5 +1,7 @@
-# EL 1.3
+# EL 1.4
 
-* Added a `NEWS.md` file to track changes to the package.
-* Changed `EL.plot()` from base plotting to `ggplot2`.
-* Added `BEL.means()` function for blockwise empirical likelihood test.
+* Converted all legacy function documentation to `roxygen2`.
+* `EL.statistic()` now returns an object of class `"htest"`.
+* Added `FDEL.acf()` for frequency-domain EL test of autocorrelation differences.
+* Fixed axis label issues in `EL.plot()` and updated examples.
+* Renamed `d` to `Delta` in `EL.statistic()` to align with theoretical notation; `d` is retained as a deprecated alias for backward compatibility.
